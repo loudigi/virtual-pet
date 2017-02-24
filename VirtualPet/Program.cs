@@ -10,11 +10,58 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-            VirtualPet myPet = new VirtualPet("Fred", 4, 2, 10, 6);
+
+            var arr = new[]
+{
+@"╔═╗┬ ┬┌─┐┌─┐┬ ┬  ╔╦╗┬ ┬┌─┐  ╔═╗┌─┐┬  ┌─┐┌─┐┌┐┌",
+@"╠╣ │ │┌─┘┌─┘└┬┘   ║ ├─┤├┤   ╠╣ ├─┤│  │  │ ││││",
+@"╚  └─┘└─┘└─┘ ┴    ╩ ┴ ┴└─┘  ╚  ┴ ┴┴─┘└─┘└─┘┘└┘",
+            };
+
+            var arr2 = new[] {
+
+@"                      \/",
+@"                    __.---;_",
+@"                  .'  './'0)',\",
+@"                  |o)  |     | ';",
+@"                  :'--; \.__/'   ;",
+@"                   ;.' (         |",
+@"              __.-'   _.)        |",
+@"          -===-----'''           | ",
+@"                 ;^;         .  ^+^^",
+@"               ;^  :         :       ^;",
+@"                \  {          :_     /",
+@"                 ^'-;          :'--'^",
+@"                    ,,____,,-'",
+@"",
+@"                 __   _______   ______",
+@"       ============(((=======(((==============",
+
+            };
+
+            Console.WriteLine("\n");
+            foreach (string line in arr) { Console.WriteLine(line); }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("\n");
+            foreach (string line2 in arr2) { Console.WriteLine(line2); }
+            Console.WriteLine("\n");
+
+            VirtualPet myPet = new VirtualPet(5, 5, 5, 5);
             Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal);
+
+
+            myPet.PrintStatus();
+            myPet.Fly();
+            myPet.PrintStatus();
+            myPet.Attack();
+            myPet.PrintStatus();
+            myPet.Hunt();
+            myPet.PrintStatus();
+            myPet.Play();
             myPet.PrintStatus();
         }
-        
+
     }
-    
+
 }

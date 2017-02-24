@@ -11,21 +11,22 @@ namespace VirtualPet
         private string petName = "Fuzzy";
         private string petAnimalType = "Falcon";
         private int petHunger;
-        private int petBoredom;
-        private int petTiredness;
-        private int petHappiness;
+        private int petExcitement;
+        private int petEnergy;
+        private int petDependency;
+        public string BarMeter = "|#";
 
         public VirtualPet()
         {
             // empty contructor
         }
-        public VirtualPet(string name, int hunger, int bored, int tired, int happy)
+        public VirtualPet( int hunger, int excite, int tired, int indie)
         {
-            this.petName = name;
+            //this.petName = name;
             this.petHunger = hunger;
-            this.petBoredom = bored;
-            this.petTiredness = tired;
-            this.petHappiness = happy;
+            this.petExcitement = excite;
+            this.petEnergy = tired;
+            this.petDependency = indie;
         }
 
         public string Name
@@ -44,23 +45,64 @@ namespace VirtualPet
             set { this.petHunger = value;}
         }
 
-        public int Boredom
+        public int Excite
         {
-            get { return this.petBoredom; }
-            set { this.petBoredom = value; }
+            get { return this.petExcitement; }
+            set { this.petExcitement = value; }
         }
 
-        public int Tiredness
+        public int Energy
         {
-            get { return this.petTiredness; }
-            set { this.petTiredness = value; }
+            get { return this.petEnergy; }
+            set { this.petEnergy = value; }
         }
 
-        public int Happiness
+        public int Dependency
         {
-            get { return this.petHappiness; }
-            set { this.petHappiness = value; }
+            get { return this.petDependency; }
+            set { this.petDependency = value; }
         }
+
+        static int RandoVal()
+        {
+            Random rnd = new Random();
+            int  num = rnd.Next(1, 5);
+            return num;
+        }
+
+        public void Fly()
+        {
+            Console.WriteLine(this.petName + " is soaring high. Can you see him?\n");
+            this.Excite += RandoVal();
+            this.Hunger += RandoVal();
+            this.Energy -= RandoVal();
+        }
+
+        public void Play()
+        {
+            Console.WriteLine("Aww that's cute, " + this.petName + " is playing with ya! He can do aerial tricks.\n");
+            this.Energy -= RandoVal();
+            this.Excite += RandoVal();
+            this.Dependency += RandoVal();
+        }
+
+        public void Hunt()
+        {
+            Console.WriteLine(this.petName + " is in hunt mode. He's very focused at this time.");
+            this.Energy -= RandoVal();
+            this.Dependency -= RandoVal();
+            this.Hunger -= RandoVal();
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine(this.petName + " is attacking!!! Oh boy! I'd hate to be on the other side of those talons.\n");
+            this.Energy -= RandoVal();
+            this.Dependency -= RandoVal();
+            this.Excite += RandoVal();
+
+        }
+
 
         public void PrintStatus()
         {
@@ -69,34 +111,34 @@ namespace VirtualPet
             Console.Write("{0,-3}", this.Hunger);
             for (int i = 0; i < this.Hunger; i++)
             {
-                Console.Write("[|]");
+                Console.Write(BarMeter);
             }
             Console.WriteLine();
 
             
-            Console.Write(String.Format("{0,-12}", "Happiness "));
-            Console.Write("{0,-3}", this.Happiness);
-            for (int i = 0; i < this.Happiness; i++)
+            Console.Write(String.Format("{0,-12}", "Dependency "));
+            Console.Write("{0,-3}", this.Dependency);
+            for (int i = 0; i < this.Dependency; i++)
             {
-                Console.Write("[|]");
+                Console.Write(BarMeter);
             }
             Console.WriteLine();
 
            
-            Console.Write(String.Format("{0,-12}", "Boredom "));
-            Console.Write("{0,-3}", this.Boredom);
-            for (int i = 0; i < this.Boredom; i++)
+            Console.Write(String.Format("{0,-12}", "Excitement "));
+            Console.Write("{0,-3}", this.Excite);
+            for (int i = 0; i < this.Excite; i++)
             {
-                Console.Write("[|]");
+                Console.Write(BarMeter);
             }
             Console.WriteLine();
 
 
-            Console.Write(String.Format("{0,-12}", "Tiredness "));
-            Console.Write("{0,-3}",this.Tiredness);
-            for (int i = 0; i < this.Tiredness; i++)
+            Console.Write(String.Format("{0,-12}", "Energy "));
+            Console.Write("{0,-3}",this.Energy);
+            for (int i = 0; i < this.Energy; i++)
             {
-                Console.Write("[|]");
+                Console.Write(BarMeter);
             }
             Console.WriteLine("\n");
         }
