@@ -10,20 +10,9 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-            int counter = 20;
-            Console.Write(String.Format("{0,-10}","Hunger " + counter));
-            for (int i = 0; i < counter; i++){
-                Console.Write("|");
-            }
-            Console.WriteLine();
-
-            int counter2 = 8;
-            Console.Write(String.Format("{0,-10}", "Life " + counter2));
-            for (int i = 0; i < counter2; i++)
-            {
-                Console.Write("|");
-            }
-            Console.WriteLine();
+            VirtualPet myPet = new VirtualPet("Fred", 4, 2, 10, 6);
+            Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal);
+            myPet.PrintStatus();
         }
         
     }
