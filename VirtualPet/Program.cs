@@ -10,7 +10,7 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-
+            
             var arr = new[]
 {
 @"╔═╗┬ ┬┌─┐┌─┐┬ ┬  ╔╦╗┬ ┬┌─┐  ╔═╗┌─┐┬  ┌─┐┌─┐┌┐┌",
@@ -51,15 +51,7 @@ namespace VirtualPet
             Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal);
 
 
-            myPet.PrintStatus();
-            myPet.Fly();
-            myPet.PrintStatus();
-            myPet.Attack();
-            myPet.PrintStatus();
-            myPet.Hunt();
-            myPet.PrintStatus();
-            myPet.Play();
-            myPet.PrintStatus();
+            myPet.UserInput();
         }
 
     }

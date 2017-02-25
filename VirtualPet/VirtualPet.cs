@@ -76,6 +76,7 @@ namespace VirtualPet
             this.Excite += RandoVal();
             this.Hunger += RandoVal();
             this.Energy -= RandoVal();
+            this.PrintStatus();
         }
 
         public void Play()
@@ -84,6 +85,7 @@ namespace VirtualPet
             this.Energy -= RandoVal();
             this.Excite += RandoVal();
             this.Dependency += RandoVal();
+            this.PrintStatus();
         }
 
         public void Hunt()
@@ -92,6 +94,7 @@ namespace VirtualPet
             this.Energy -= RandoVal();
             this.Dependency -= RandoVal();
             this.Hunger -= RandoVal();
+            this.PrintStatus();
         }
 
         public void Attack()
@@ -100,9 +103,42 @@ namespace VirtualPet
             this.Energy -= RandoVal();
             this.Dependency -= RandoVal();
             this.Excite += RandoVal();
-
+            this.PrintStatus();
         }
 
+
+        public void UserInput()
+        {
+            Console.WriteLine("Here's "+ this.Name + "!" + " What do you want to do?\n\n" + "1. Fly\n" + "2. Play\n" + "3. Hunt\n" +"4. Attack\n" + "5. Go home\n");
+
+            string userSelect = Console.ReadLine();
+
+            if(userSelect == "1")
+            {
+                this.Fly();
+
+            }else if( userSelect == "2")
+            {
+                this.Play();
+
+            }else if(userSelect == "3")
+            {
+                this.Hunt();
+
+            }else if(userSelect == "4")
+            {
+                this.Hunt();
+
+            }else if(userSelect == "5")
+            {
+                Console.WriteLine("See Ya!!!");
+                return;
+            }else
+            {
+                Console.WriteLine("**** " +userSelect + " - is not one of the options. Try again. ****");
+                this.PrintStatus();
+            }
+        }
 
         public void PrintStatus()
         {
@@ -141,6 +177,7 @@ namespace VirtualPet
                 Console.Write(BarMeter);
             }
             Console.WriteLine("\n");
+            this.UserInput();
         }
     }
 }
