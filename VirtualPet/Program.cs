@@ -10,7 +10,7 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-            
+            Console.SetWindowSize(52, 42);
             var arr = new[]
 {
 @"╔═╗┬ ┬┌─┐┌─┐┬ ┬  ╔╦╗┬ ┬┌─┐  ╔═╗┌─┐┬  ┌─┐┌─┐┌┐┌",
@@ -48,7 +48,7 @@ namespace VirtualPet
             Console.WriteLine("\n");
 
             VirtualPet myPet = new VirtualPet(5, 5, 5, 5);
-            Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal);
+            Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal +". He's a cool pet.\n");
 
 
             myPet.UserInput();
