@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace VirtualPet
 {
@@ -16,6 +18,8 @@ namespace VirtualPet
         private int petEnergy;
         private int petDependency;
         public string BarMeter = "|#";
+        public string EmptyMeter = "| ";
+        
 
         public VirtualPet()
         {
@@ -71,16 +75,38 @@ namespace VirtualPet
         #region Methods
 
         //Random value generation 
-        static int RandoVal(int num1, int num2)
+        internal int RandoVal(int num1, int num2)
         {
             Random rnd = new Random();
             int  num = rnd.Next(num1, num2);
             return num;
         }
+
+        
+        public void Tick()
+            {
+          
+            string[] eventArray = {" went flying", " went hunting", " starting playing", " went in for an attack" };
+            Console.WriteLine("\n" + this.Name + " Got bored and " + eventArray[RandoVal(0, eventArray.Length)] );
+
+            Random EnRnd = new Random();
+            int numE = EnRnd.Next(1, 10);
+            int numN = EnRnd.Next(1, 10);
+            int numH = EnRnd.Next(1, 10);
+            int numD = EnRnd.Next(1, 10);
+
+            this.Excite = numE;
+            this.Energy = numN;
+            this.Hunger = numH;
+            this.Dependency = numD;
+
+            this.PrintStatus();
+        }
+
         //Set Methods with a check for current poperty values before updating them with random values.
         public void Fly()
         {
-            Console.WriteLine(this.petName + " is soaring high. Can you see him?\n");
+            Console.WriteLine("\n" + this.petName + " is soaring high. Can you see him?\n");
             if (this.Excite != 1 && this.Excite != 10)
             {
                 this.Excite += RandoVal(1, (10 - this.Excite));
@@ -99,7 +125,7 @@ namespace VirtualPet
         
         public void Play()
         {
-            Console.WriteLine("Aww that's cute, " + this.petName + " is playing with ya! He can do aerial tricks.\n");
+            Console.WriteLine("\nAww that's cute, " + this.petName + " is playing with ya!\nHe can do aerial tricks.\n");
             if (this.Energy != 1 && this.Energy != 10)
             {
                 this.Energy -= RandoVal(1, (this.Energy - 1));
@@ -117,7 +143,7 @@ namespace VirtualPet
 
         public void Hunt()
         {
-            Console.WriteLine(this.petName + " is in hunt mode now. Very focused on his prey.");
+            Console.WriteLine("\n" + this.petName + " is in hunt mode now. Very focused on his prey.");
             if(this.Energy != 1 && this.Energy != 10)
             {
                 this.Energy += RandoVal(1, (10 - this.Energy));
@@ -137,7 +163,7 @@ namespace VirtualPet
 
         public void Attack()
         {
-            Console.WriteLine(this.petName + " is attacking!!! Oh boy! I'd hate to be on the other side of those talons.\n");
+            Console.WriteLine("\n" + this.petName + " is attacking!!! Oh boy! I'd hate to be on the other side of those talons.\n");
             if(this.Energy != 1 && this.Energy != 10)
             {
                 this.Energy -= RandoVal(1, (this.Energy - 1));
@@ -159,11 +185,12 @@ namespace VirtualPet
       
         public void UserInput()
         {
-            Console.WriteLine("Here's "+ this.Name + "!" + " What do you want to do?\n\n" + "1. Fly\n" + "2. Play\n" + "3. Hunt\n" +"4. Attack\n" + "5. Go home\n");
-
+            Console.WriteLine("Here's "+ this.Name + "!" + " What do you want to do?\n\n" + "1. Fly\n" + "2. Play\n" + "3. Hunt\n" +"4. Attack\n" + "5. Tick\n" + "6. Go home\n");
+            
             string userSelect = Console.ReadLine();
 
-            if(userSelect == "1")
+           
+            if (userSelect == "1")
             {
                 this.Fly();
 
@@ -177,9 +204,15 @@ namespace VirtualPet
 
             }else if(userSelect == "4")
             {
-                this.Hunt();
+                this.Attack();
 
-            }else if(userSelect == "5")
+            }
+            else if(userSelect == "5")
+            {
+                this.Tick();
+
+    }
+            else if(userSelect == "6")
             {
                 Console.WriteLine("See Ya!!!");
                 return;
@@ -188,7 +221,8 @@ namespace VirtualPet
                 Console.WriteLine("**** " +userSelect + " - is not one of the options. Try again. ****");
                 this.PrintStatus();
             }
-        }
+            
+        } 
         
         public void PrintStatus()
         {
@@ -200,6 +234,11 @@ namespace VirtualPet
             {
                 Console.Write(BarMeter);
             }
+            for (int j = 0; j < (10 - this.Hunger); j++)
+            {
+                Console.Write(EmptyMeter);
+            }
+
             Console.WriteLine();
             
 
@@ -210,6 +249,10 @@ namespace VirtualPet
             {
                 Console.Write(BarMeter);
             }
+            for (int j = 0; j < (10 - this.Dependency); j++)
+            {
+                Console.Write(EmptyMeter);
+            }
             Console.WriteLine();
 
            
@@ -218,6 +261,10 @@ namespace VirtualPet
             for (int i = 0; i < this.Excite; i++)
             {
                 Console.Write(BarMeter);
+            }
+            for (int j = 0; j < (10 - this.Excite); j++)
+            {
+                Console.Write(EmptyMeter);
             }
             Console.WriteLine();
 
@@ -228,9 +275,14 @@ namespace VirtualPet
             {
                 Console.Write(BarMeter);
             }
+            for (int j = 0; j < (10 - this.Energy); j++)
+            {
+                Console.Write(EmptyMeter);
+            }
             Console.WriteLine("\n\n===============================================");
             Console.WriteLine("\n");
             this.UserInput();
+
         }
         #endregion
     }

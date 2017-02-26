@@ -50,7 +50,6 @@ namespace VirtualPet
             VirtualPet myPet = new VirtualPet(5, 5, 5, 5);
             Console.WriteLine("Hi! Meet " + myPet.Name + " the " + myPet.Animal +". He's a cool pet.\n");
 
-
             myPet.UserInput();
         }
 
